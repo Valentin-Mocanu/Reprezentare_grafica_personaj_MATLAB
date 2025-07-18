@@ -1,1 +1,0 @@
-desenare_grafic();
