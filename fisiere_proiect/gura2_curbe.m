@@ -1,4 +1,4 @@
-function gura_2_curbe()
+function gura2_curbe()
 
 % --> Codul acesta reprezinta limba si partea de jos a gurii, adica "U"-ul (buza de jos) <--
 

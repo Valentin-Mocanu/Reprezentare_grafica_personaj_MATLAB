@@ -1,4 +1,4 @@
-function fata_2_curbe()
+function fata2_curbe()
 
 t = linspace(0,1); % Parametrul
 b = [16.3 27 38.3; 25 31 24.6]; % Punctele de control

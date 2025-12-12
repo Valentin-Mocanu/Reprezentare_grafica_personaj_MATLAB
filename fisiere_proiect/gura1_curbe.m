@@ -1,6 +1,6 @@
-function gura_1_curbe()
+function gura1_curbe()
 
-% --> Codul acesta reprezinta partea de sus a gurii, adica "W"-ul (buzele de sus) <--
+% --> Codul acesta reprezinta partea de sus a gurii, adica "W"-ul (buza de sus) <--
 
 t = linspace(0,1,100); % Parametrul
 % Punctele de control

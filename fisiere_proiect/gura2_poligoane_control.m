@@ -1,4 +1,4 @@
-function gura_2_poligoane_control()
+function gura2_poligoane_control()
 
 % --> Codul acesta reprezinta limba si partea de jos a gurii, adica "U"-ul (buza de jos) <--
 

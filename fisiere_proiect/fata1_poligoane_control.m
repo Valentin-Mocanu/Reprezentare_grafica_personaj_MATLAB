@@ -1,4 +1,4 @@
-function fata_1_poligoane_control()
+function fata1_poligoane_control()
 
 t = linspace(0,1); % Parametrul
 % Punctele de control

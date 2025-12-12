@@ -54,34 +54,42 @@ hold off
 %% Curba 2 – spline F-Mill
 
 p_interpolare = [19 23 27 31 35; -3 -13 -11 -13 -3]; % Punctele de interpolare
-% Puncte de control de capat
-a = 9;
-e = -13;
-c = 45;
-d = -13;
 
-n = size(p_interpolare,2); % Numarul de puncte
+% Puncte de control de capat
+a = 9;   % x pentru primul P1
+e = -13; % y pentru primul P1
+c = 45;  % x pentru ultimul P2
+d = -13; % y pentru ultimul P2
+
+n = size(p_interpolare,2); % Numarul de puncte interpolate
+
+% Acesta va fi folosit pentru a genera punctele de control care asigura o curba neteda
 l = zeros(2,n-2);
 for j = 1:n-2
     l(:,j) = p_interpolare(:,j+2) - p_interpolare(:,j);
 end
 
+% Numarul total de puncte de control necesare spline-ului
 ultim = 3*(n-1)+1;
-b = zeros(2,ultim);
-b(:,1) = p_interpolare(:,1);
-b(:,2) = [a;e];
-b(:,3) = p_interpolare(:,2)-(1/6)*l(:,1);
+b = zeros(2,ultim); % Matricea cu toate punctele de control Bezier
 
+% Primele 3 puncte de control (pentru primul segment Bezier)
+b(:,1) = p_interpolare(:,1); % P0
+b(:,2) = [a;e]; % P1
+b(:,3) = p_interpolare(:,2)-(1/6)*l(:,1); % P2
+
+% Construirea automata a punctelor de control pentru segmentele din interior
 for k = 1:n-3
-    b(:,3*k+1) = p_interpolare(:,k+1);
-    b(:,3*k+2) = p_interpolare(:,k+1) + (1/6)*l(:,k);
-    b(:,3*k+3) = p_interpolare(:,k+2) - (1/6)*l(:,k+1);
+    b(:,3*k+1) = p_interpolare(:,k+1); % P0
+    b(:,3*k+2) = p_interpolare(:,k+1) + (1/6)*l(:,k); % P1
+    b(:,3*k+3) = p_interpolare(:,k+2) - (1/6)*l(:,k+1); % P2
 end
 
-b(:,3*(n-2)+1) = p_interpolare(:,n-1);
-b(:,3*(n-2)+2) = p_interpolare(:,n-1) + (1/6)*l(:,n-2);
-b(:,3*(n-2)+3) = [c;d];
-b(:,ultim) = p_interpolare(:,n);
+% Ultimele puncte de control (pentru ultimul segment Bezier)
+b(:,3*(n-2)+1) = p_interpolare(:,n-1); % P0
+b(:,3*(n-2)+2) = p_interpolare(:,n-1) + (1/6)*l(:,n-2); % P1
+b(:,3*(n-2)+3) = [c;d]; % P2
+b(:,ultim) = p_interpolare(:,n); % P3
 
 % --> Desenare grafic (curba + poligoanele de control) <--
 % Traseaza curbele

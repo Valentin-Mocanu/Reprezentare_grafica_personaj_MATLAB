@@ -1,6 +1,6 @@
 function modificare_locala_CB()
 
-% Am luat curba din stanga de la functia fata_1_curbe.m
+% --> Am luat curba din stanga de la functia fata_1_curbe.m <--
 
 t = linspace(0,1); % Parametrul
 % Punctele de control 
